@@ -1,6 +1,6 @@
 addEventListener("fetch", (event) => {
   const { pathname } = new URL(event.request.url);
-  if(pathname.startsWith("resize")) {
+  if(pathname.startsWith("/resize")) {
     if(event.request.method !== "POST") return event.respondWith(new Response(null, {
       status: 405,
       statusText: "Method Not Allowed",
