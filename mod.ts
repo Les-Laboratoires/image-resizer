@@ -1,16 +1,16 @@
 addEventListener("fetch", (event) => {
   const { pathname } = new URL(event.request.url);
   if(pathname.startsWith("resize")) {
-    if(event.request.method !== "POST") return new Response(null, {
+    if(event.request.method !== "POST") return event.respondWith(new Response(null, {
       status: 405,
       statusText: "Method Not Allowed",
-    })
-    else return handleResizeRoute(event.request, event)
+    }))
+    else return event.respondWith(handleResizeRoute(event.request, event))
   }
-  return new Response(null, {
+  return event.respondWith(new Response(null, {
     status: 404,
     statusText: "Page Not Found",
-  })
+  }))
 });
 
 async function handleResizeRoute(request, event) {
